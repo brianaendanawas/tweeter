@@ -1,0 +1,38 @@
+.new-tweet {
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+textarea {
+  background-color: #f4f1ec;
+  border: none;
+  resize: none;
+}
+
+.button-and-counter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+#tweet-text {
+  border-bottom: #505050 4px solid;
+  width: 100%;
+}
+
+.button {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  font-family: 'Bungee', sans-serif;
+  border: none;
+}
+
+.counter {
+  font-family: 'Bungee', sans-serif;
+}
+
+textarea::placeholder {
+  font-weight: bold;
+  color: #505050;
+}
