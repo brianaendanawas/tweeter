@@ -1,5 +1,9 @@
 .all-tweets {
   width: 100%;
+}
+
+.tweets {
+  width: 100%;
   border: solid;
   margin-bottom: 15px;
 }
@@ -53,7 +57,7 @@ footer {
   color: rgb(35, 35, 117);
 }
 
-.all-tweets:hover {
+.tweets:hover {
   box-shadow: 8px 8px rgba(120, 122, 224, 0.349);
 }
 
