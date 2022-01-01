@@ -31,6 +31,7 @@ $(document).ready(function() {
     }
   ]
   
+  // takes in an array of tweet objects and appends each one to .all-tweets
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);
@@ -38,6 +39,7 @@ $(document).ready(function() {
     }
   }
   
+  // takes in a tweet object and returns the HTML structure of the tweet 
   const createTweetElement = function(tweet) {
     const $tweet = 
     $(`
@@ -67,10 +69,12 @@ $(document).ready(function() {
   
   renderTweets(data);
 
+  // event listener for submit and prevent its default behavior 
   $("form").submit(function(event) {
     event.preventDefault();
   });
 
+  // serialize form data and send it to the server 
   $("button").on('click', function() {
     console.log('Button clicked, performing ajax call...');
     const data = $('textarea').serialize();
