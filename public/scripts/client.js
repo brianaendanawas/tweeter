@@ -5,33 +5,8 @@
  */
 
 $(document).ready(function() {
-
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
   
-  // takes in an array of tweet objects and appends each one to .all-tweets
+  // takes in an array of tweet objects and appends each one to the tweets container
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);
@@ -55,7 +30,7 @@ $(document).ready(function() {
         <p>${tweet.content.text}</p>
       </article>
       <footer>
-        <p>${tweet.created_at}</p>
+        <p>${timeago.format(tweet.created_at)}</p>
         <div class="buttons">
           <i class="fas fa-flag"></i>
           <i class="fas fa-retweet"></i>
@@ -66,8 +41,6 @@ $(document).ready(function() {
     `);
     return $tweet;
   }
-  
-  renderTweets(data);
 
   // event listener for submit and prevent its default behavior 
   $("form").submit(function(event) {
@@ -78,9 +51,27 @@ $(document).ready(function() {
   $("button").on('click', function() {
     console.log('Button clicked, performing ajax call...');
     const data = $('textarea').serialize();
-    $.ajax('/tweets', { method: 'POST', data: data })
-    .then(function () {
-      console.log(data);
-    });
+    $.ajax({ 
+      url: '/tweets', 
+      method: 'POST', 
+      data: data,
+      success: function() {
+        $('textarea').val('');
+      }
+    })
   });
+
+  // fetch tweets from /tweets page 
+  const loadTweets = function() {
+    $.ajax({ 
+      url: '/tweets', 
+      method: 'GET', 
+      success: function(tweets) {
+        renderTweets(tweets);
+      }
+    })
+  }
+
+  loadTweets();
+
 });
