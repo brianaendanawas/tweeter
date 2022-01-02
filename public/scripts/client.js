@@ -47,18 +47,26 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
-  // serialize form data and send it to the server 
+  // serialize form data and send it to the server if tweet length is valid 
   $("button").on('click', function() {
-    console.log('Button clicked, performing ajax call...');
-    const data = $('textarea').serialize();
-    $.ajax({ 
-      url: '/tweets', 
-      method: 'POST', 
-      data: data,
-      success: function() {
-        $('textarea').val('');
-      }
-    })
+    const value = $('textarea').val();
+    const valueLength = value.length;
+    if (value === "" || value === null) {
+      alert("Tweet is empty!");
+    } else if (valueLength > 140) {
+      alert("Tweet is too long!");
+    } else {
+      console.log('Button clicked, performing ajax call...');
+      const data = $('textarea').serialize();
+      $.ajax({ 
+        url: '/tweets', 
+        method: 'POST', 
+        data: data,
+        success: function() {
+          $('textarea').val('');
+        }
+      })
+    }
   });
 
   // fetch tweets from /tweets page 
