@@ -66,6 +66,14 @@ $(document).ready(function() {
           $('textarea').val('');
         }
       })
+      // refetch tweets on submission and display on the page without refreshing
+      .then(function() {
+        $.ajax({url: '/tweets', method: 'GET'})
+        .then(function(tweetObject) {
+          const lastTweet = createTweetElement(tweetObject[tweetObject.length-1]);
+          $('.all-tweets').prepend(lastTweet);
+        });
+      })
     }
   });
 
@@ -73,10 +81,10 @@ $(document).ready(function() {
   const loadTweets = function() {
     $.ajax({ 
       url: '/tweets', 
-      method: 'GET', 
-      success: function(tweets) {
-        renderTweets(tweets);
-      }
+      method: 'GET'
+    })
+    .then(function(tweets) {
+      renderTweets(tweets);
     })
   }
 
