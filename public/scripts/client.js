@@ -14,6 +14,13 @@ $(document).ready(function() {
     }
   }
   
+  // escape function for XSS
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
   // takes in a tweet object and returns the HTML structure of the tweet 
   const createTweetElement = function(tweet) {
     const $tweet = 
@@ -27,7 +34,7 @@ $(document).ready(function() {
         <p class="handle">${tweet.user.handle}</p>
       </article>
       <article class="tweet-middle">
-        <p>${tweet.content.text}</p>
+        <p>${escape(tweet.content.text)}</p>
       </article>
       <footer>
         <p>${timeago.format(tweet.created_at)}</p>
