@@ -54,14 +54,21 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
+  // hide error message 
+  $('.error').hide();
+
   // serialize form data and send it to the server if tweet length is valid 
   $("button").on('click', function() {
+    // slide up error message if one is showing
+    $('.error').slideUp(300);
     const value = $('textarea').val();
     const valueLength = value.length;
     if (value === "" || value === null) {
-      alert("Tweet is empty!");
+      $('.error').text('Tweet is empty!');
+      $('.error').slideDown(300);
     } else if (valueLength > 140) {
-      alert("Tweet is too long!");
+      $('.error').text('Tweet is too long!');
+      $('.error').slideDown(300);
     } else {
       console.log('Button clicked, performing ajax call...');
       const data = $('textarea').serialize();
