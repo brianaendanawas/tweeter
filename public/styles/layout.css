@@ -21,6 +21,13 @@ body {
   font-size: 24px;
 }
 
+@media only screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
@@ -32,4 +39,13 @@ main {
   align-items: center;
   margin: auto;
   background-color: #f4f1ec;
+}
+
+@media only screen and (min-width: 1024px) {
+  main {
+    width: 50%;
+    float: right;
+    margin-right: 50px;
+    margin-top: 170px;
+  }
 }
