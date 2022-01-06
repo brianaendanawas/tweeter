@@ -7,9 +7,36 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 120px;
+}
+
+.top-header img {
+  width: 200px;
+  height: 200px;
+}
+
+.top-header h2 {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 h2 {
   color: #FFFFFF;
+}
+
+.picture {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .top-header {
+    width: 35%;
+    margin-top: 170px;
+    margin-left: 50px;
+    float: left;
+  }
+
+  .top-header h2 {
+    margin-bottom: 70px;
+  }
 }
