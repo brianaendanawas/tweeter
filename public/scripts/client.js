@@ -82,6 +82,7 @@ $(document).ready(function() {
       })
       // refetch tweets on submission and display on the page without refreshing
       .then(function() {
+        $('.counter').text('140');
         $.ajax({url: '/tweets', method: 'GET'})
         .then(function(tweetObject) {
           const lastTweet = createTweetElement(tweetObject[tweetObject.length-1]);
