@@ -70,7 +70,6 @@ $(document).ready(function() {
       $('.error').text('Tweet is too long!');
       $('.error').slideDown(300);
     } else {
-      console.log('Button clicked, performing ajax call...');
       const data = $('textarea').serialize();
       $.ajax({ 
         url: '/tweets', 
